@@ -11,6 +11,10 @@ public class TestUtils {
         return reflections.getSubTypesOf(clazz);
     }
 
+    public static <T> T locateImplementation(Class<T> clazz) {
+        return locateImplementation(clazz, null);
+    }
+
     public static <T> T locateImplementation(Class<T> clazz, SymBotClient botClient) {
         Set<Class<? extends T>> impls = locateImplementations(clazz);
         if (impls.isEmpty()) {
@@ -18,7 +22,11 @@ public class TestUtils {
         }
         Class<? extends T> impl = impls.iterator().next();
         try {
-            return impl.getConstructor(SymBotClient.class).newInstance(botClient);
+            if (botClient != null) {
+                return impl.getConstructor(SymBotClient.class).newInstance(botClient);
+            } else {
+                return impl.getConstructor().newInstance();
+            }
         } catch (Exception e) {
             return null;
         }

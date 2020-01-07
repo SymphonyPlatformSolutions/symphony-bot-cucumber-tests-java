@@ -55,6 +55,14 @@ public class SymStepDefinitions implements En {
         when(botClient.getMessagesClient()).thenReturn(messagesClient);
         when(botClient.getStreamsClient()).thenReturn(streamsClient);
 
+        SymStaticMain mainClass = TestUtils.locateImplementation(SymStaticMain.class, botClient);
+        if (mainClass != null) {
+            imListener = TestUtils.locateImplementation(IMListener.class);
+            roomListener = TestUtils.locateImplementation(RoomListener.class);
+            connectionListener = TestUtils.locateImplementation(ConnectionListener.class);
+            elementsListener = TestUtils.locateImplementation(ElementsListener.class);
+        }
+
         Given("the stream id is {string}", (String id) -> streamId = id);
 
         Given("a Symphony user types {string}", (String messageText) -> {
