@@ -6,7 +6,7 @@
 
     <groupId>com.symphony.platformsolutions</groupId>
     <artifactId>symphony-bot-cucumber-tests-java</artifactId>
-    <version>0.1</version>
+    <version>0.4</version>
     <name>Symphony Bot Cucumber Tests</name>
     <url>https://github.com/SymphonyPlatformSolutions/symphony-bot-cucumber-tests</url>
     <description>Behavioural-driven testing framework for the Symphony API Client</description>
@@ -36,7 +36,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <cucumber.version>4.8.0</cucumber.version>
-        <mockito.version>3.2.0</mockito.version>
+        <mockito.version>3.2.4</mockito.version>
         <reflections.version>0.9.11</reflections.version>
     </properties>
 
@@ -44,7 +44,7 @@
         <dependency>
             <groupId>com.symphony.platformsolutions</groupId>
             <artifactId>symphony-api-client-java</artifactId>
-            <version>1.0.47</version>
+            <version>1.0.48</version>
         </dependency>
         <dependency>
             <groupId>io.cucumber</groupId>
@@ -67,9 +67,9 @@
             <version>${reflections.version}</version>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.5.2</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>

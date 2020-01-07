@@ -1,4 +1,7 @@
-## Symphony Bot Cucumber Tests
+# Symphony Bot Cucumber Tests
+
+[![Maven Central](https://img.shields.io/maven-central/v/com.symphony.platformsolutions/symphony-bot-cucumber-tests-java)](https://mvnrepository.com/artifact/com.symphony.platformsolutions/symphony-bot-cucumber-tests-java) [![License: MIT](https://img.shields.io/badge/License-MIT-purple.svg)](https://opensource.org/licenses/MIT) [![Email](https://img.shields.io/static/v1?label=contact&message=email&color=darkgoldenrod)](mailto:platformsolutions@symphony.com?subject=Cucumber%20Tests)
+
 This project aims to provide Symphony bot developers with a foundation to write end-to-end behavioural tests using Cucumber
 
 ## Installation
@@ -44,16 +47,26 @@ Feature: Basic Commands
 * **Given..**
    * the stream id is ``{string}``
    * a Symphony user types ``{string}``
-   * a Symphony user attaches ``{string}``
+   * there is a form with id ``{string}``
+   * a Symphony user types ``{string}`` into the ``{string}`` text field
+   * a Symphony user checks ``{string}`` for the ``{string}`` checkbox
+   * a Symphony user chooses ``{string}`` for the ``{string}`` radio button
+   * a Symphony user chooses ``{string}`` for the ``{string}`` dropdown box
+   * a Symphony user chooses these values for the ``{string}`` person selector
+   * a Symphony user attaches a file named ``{string}``
    * the user is an owner of the room
    * the user is not an owner of the room
 * **When..**
-  * a Symphony user sends the message in an IM
-  * a Symphony user sends the message in a room
+   * a Symphony user sends the message in an IM
+   * a Symphony user sends the message in a room
+   * a Symphony user submits the form using the ``{string}`` button
 * **Then..**
-  * The bot should display the following response
-  * The bot should send this data ``{string}``
-  * The bot should send this attachment ``{string}``
+   * The bot should display the following response
+   * The bot's response should contain
+   * The bot's response should contain ``{string}``
+   * The bot should send the following response data
+   * The bot's response data should contain ``{string}``
+   * The bot should send an attachment named ``{string}``
 
 ### Adding Features and Step Definitions
 You should continue to add features and step definitions to test custom logic specific to your bot.
@@ -82,3 +95,18 @@ public class MyBotStepDefinitions implements En {
     }
 }
 ```
+
+#### Implementation
+There are two options for implementation:
+* ``SymBotClient`` injection
+  * In your listener implementations, add a constructor with a single ``SymBotClient`` parameter
+  * Use that ``SymBotClient`` instance for all calls
+* Static
+  * Make your main class implement ``SymStaticMain``
+  * Add a constructor with a single ``SymBotClient`` parameter
+  * Override the ``getBotClient()`` method to return the shared ``SymBotClient`` instance
+
+### IDE Configuration
+* In the respective launch configuration for the feature, set the ``Glue`` as:
+  * ``com.symphony.ps.sdk.bdd``
+  * Your own package containing your custom Step Definitions
